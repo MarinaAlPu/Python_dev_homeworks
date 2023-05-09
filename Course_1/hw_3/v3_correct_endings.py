@@ -94,25 +94,19 @@ else:
 # ПОДБОР КОРРЕКТНЫХ ОКОНЧАНИЙ
 # Правильные ответы
     quantity.append(correct_answers)
-    print('\n', quantity)
     last_digit_in_correct_answers = correct_answers % 10
     last_digits.append(last_digit_in_correct_answers)
-    print('\n', last_digits)
 
 # Набранные баллы
     quantity.append(points_total)
-    print('\n', quantity)
     last_digit_in_points_total = points_total % 10    
     last_digits.append(last_digit_in_points_total)
-    print(last_digits)
 
 # Проценты правильных ответов
     percent_of_correct_answers = round((correct_answers / len(questions)) * 100)
     quantity.append(percent_of_correct_answers)
-    print('\n', quantity)
     last_digit_in_percent_of_correct_answers = percent_of_correct_answers % 10 
     last_digits.append(last_digit_in_percent_of_correct_answers)
-    print(last_digits)
 
 
 for i in range(len(quantity)):
@@ -124,8 +118,6 @@ for i in range(len(quantity)):
         morthy.append(words[i] + endinds[2])
     else:
         morthy.append(words[i] + endinds[3])
-
-    print(morthy)
 
 
 # Финальный вывод 
