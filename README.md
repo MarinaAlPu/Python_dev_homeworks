@@ -1,4 +1,4 @@
-## Python_dev_homeworks
+## Python_dev_homeworks :computer:
 Домашние работы по курсу "Python разработчик"
 
 ### Отправленные
