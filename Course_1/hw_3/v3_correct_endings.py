@@ -121,5 +121,5 @@ for i in range(len(quantity)):
 
 
 # Финальный вывод 
-print(f"\nВот и все!\nВы ответили на {correct_answers} {morthy[0]} из {len(questions)} верно, вы набрали {points_total} {morthy[1]}.\
-    \nЭто {percent_of_correct_answers} {morthy[2]}")
+    print(f"\nВот и все!\nВы ответили на {correct_answers} {morthy[0]} из {len(questions)} верно, вы набрали {points_total} {morthy[1]}.\
+        \nЭто {percent_of_correct_answers} {morthy[2]}")
