@@ -21,7 +21,7 @@
 `Вот и все! Вы ответили на ___ вопросов из ___ верно, вы набрали ___ баллов.`
 '''
 
-# Списки вопросов, ответов, слов и окончаний
+
 questions = ["My name ___ Vova.", "I ___ a coder.", "I live ___ Moscow.", "How much ___ the fish?",\
              "The sky ___ blue.", "I ___ a dog.", "My dog ___ many toys.", "My dog ___ grey.",\
              "His name ___ Charlie.", "I ___ snow.", "I ___ to sleep.", "What ___ your name?",\
@@ -33,10 +33,6 @@ last_digits = []
 quantity = []
 morthy = []
 
-# Переменные
-POINTS_PER_ANSWER_1 = 3
-POINTS_PER_ANSWER_2 = 2
-POINTS_PER_ANSWER_3 = 1
 tries_to_answer_left = 3
 current_try = 0
 correct_answers = 0
@@ -48,61 +44,40 @@ morthy_answers = None
 morthy_points = None
 morthy_percents = None
 
-# Программа здоровается и предлагает начать
+
 user_input = input('Привет!\nПредлагаю проверить свои знания английского!\nНаберите "ready", чтобы начать! ')
 
 if user_input != "ready":
     print('Кажется, вы не хотите играть. Очень жаль')
 else:
-
-# Мы задали вопрос
     for index_of_question in range(len(questions)):
         print(f'\n{questions[index_of_question]} ')
         tries_to_answer_left = 3
         current_try = 0
-# и запустили цикл с попытками.
         while tries_to_answer_left > 0:
-# Внутри него пользователь вводит слово.
             user_answer = input()
             current_try += 1
-
-# Если оно верное - цикл с попытками прерывается брейк.
             if user_answer == answers[index_of_question]:
                 print('Ответ верный!')
                 correct_answers += 1
-                if current_try == 1:
-                    points_total += POINTS_PER_ANSWER_1
-                elif current_try == 2:
-                    points_total += POINTS_PER_ANSWER_2
-                elif current_try == 3:
-                    points_total += POINTS_PER_ANSWER_3
+                points_total += tries_to_answer_left
                 break
-
-# Если неверное
             else:
-# уменьшаем счетчик количества попыток
                 tries_to_answer_left -= 1
-                
-# если осталось 0 попыток
                 if tries_to_answer_left == 0:
                     print(f'Увы, но нет. Верный ответ: {answers[index_of_question]}')
                 else:
-# выводим пользователю сообщение, сколько у него попыток осталось
                     print(f'Осталось попыток: {tries_to_answer_left}, попробуйте еще раз!')
 
 
-# ПОДБОР КОРРЕКТНЫХ ОКОНЧАНИЙ
-# Правильные ответы
     quantity.append(correct_answers)
     last_digit_in_correct_answers = correct_answers % 10
     last_digits.append(last_digit_in_correct_answers)
 
-# Набранные баллы
     quantity.append(points_total)
     last_digit_in_points_total = points_total % 10    
     last_digits.append(last_digit_in_points_total)
 
-# Проценты правильных ответов
     percent_of_correct_answers = round((correct_answers / len(questions)) * 100)
     quantity.append(percent_of_correct_answers)
     last_digit_in_percent_of_correct_answers = percent_of_correct_answers % 10 
@@ -120,6 +95,5 @@ for i in range(len(quantity)):
         morthy.append(words[i] + endinds[3])
 
 
-# Финальный вывод 
-    print(f"\nВот и все!\nВы ответили на {correct_answers} {morthy[0]} из {len(questions)} верно, вы набрали {points_total} {morthy[1]}.\
-        \nЭто {percent_of_correct_answers} {morthy[2]}")
+print(f"\nВот и все!\nВы ответили на {correct_answers} {morthy[0]} из {len(questions)} верно, вы набрали {points_total} {morthy[1]}.\
+    \nЭто {percent_of_correct_answers} {morthy[2]}")
