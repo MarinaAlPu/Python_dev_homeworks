@@ -40,9 +40,6 @@ points_total = 0
 last_digit_in_points_total = 0
 percent_of_correct_answers = 0
 last_digit_in_correct_answers = 0
-morthy_answers = None
-morthy_points = None
-morthy_percents = None
 
 
 user_input = input('Привет!\nПредлагаю проверить свои знания английского!\nНаберите "ready", чтобы начать! ')
