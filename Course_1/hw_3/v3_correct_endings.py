@@ -19,14 +19,16 @@
 Если с первой попытки введен правильный ответ — 3 балла, со второй — 2, с третьей — 1.
 После ответа на все вопросы приложение говорит:
 `Вот и все! Вы ответили на ___ вопросов из ___ верно, вы набрали ___ баллов.`
+
+Много вопросов - для проверки корректности подбора окончаний
 '''
 
 
-questions = ["My name ___ Vova.", "I ___ a coder.", "I live ___ Moscow.", "How much ___ the fish?",\
-             "The sky ___ blue.", "I ___ a dog.", "My dog ___ many toys.", "My dog ___ grey.",\
-             "His name ___ Charlie.", "I ___ snow.", "I ___ to sleep.", "What ___ your name?",\
-             "The sun ___ shining.", "The weather ___ good.", "I ___ my homework.", "I ___ snowboard."] 
-answers = ["is", "am", "in", "is", "is", "have", "has", "is", "is", "like", "like", "is", "is", "is", "do", "have"]
+questions = ["My name ___ Vova.", "I ___ a coder.", "I live ___ Moscow."]#, "How much ___ the fish?",\
+            #  "The sky ___ blue.", "I ___ a dog.", "My dog ___ many toys.", "My dog ___ grey.",\
+            #  "His name ___ Charlie.", "I ___ snow.", "I ___ to sleep.", "What ___ your name?",\
+            #  "The sun ___ shining.", "The weather ___ good.", "I ___ my homework.", "I ___ snowboard."] 
+answers = ["is", "am", "in"]#, "is", "is", "have", "has", "is", "is", "like", "like", "is", "is", "is", "do", "have"]
 words = ["вопрос", "балл", "процент"]
 endinds = ["ов", "", "а", "ов"]
 last_digits = []
@@ -34,7 +36,6 @@ quantity = []
 morthy = []
 
 tries_to_answer_left = 3
-current_try = 0
 correct_answers = 0
 points_total = 0
 last_digit_in_points_total = 0
