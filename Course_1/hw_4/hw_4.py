@@ -50,7 +50,7 @@ answers = {}
 right_answered_words = []
 wrong_answered_words = []
 
-# tries = 2
+number_of_words = 5
 user_input = None # или user_input = ""
 edited_user_input = None # или user_input = ""
 letter_unneeded = "ё"
@@ -59,6 +59,7 @@ dict_name = "words"
 correct = "Правильно отвечены слова: "
 incorrect = "Неправильно отвечены слова: "
 amount_right_answered_words = 0
+
 # words = words_easy
 # print(words_easy)
 # print(words)
@@ -86,78 +87,95 @@ user_input = input(f"\nВыбран уровень сложности {level_ru}
 
 
 # Запустить цикл по пяти словам из словаря words
-for word, translation in words_easy.items(): # заменить words_easy на words когда разберусь как в words положить словарь words_easy
-## Обратите внимание: вам понадобится и ключ, и значение!
-## Для каждого слова:
-## - выведите ключ,
-## - длину слова,
-## - первую букву.
+# while number_of_words > 0:
 
-## Программа: divide, 9 букв, начинается на р...
-# Получить у пользователя ответ, сравнить ответ со значением в словаре words
+for word, translation in words_easy.items(): # заменить words_easy на words когда разберусь как в words положить словарь words_easy
+    ## Обратите внимание: вам понадобится и ключ, и значение!
+    ## Для каждого слова:
+    ## - выведите ключ,
+    ## - длину слова,
+    ## - первую букву.
+
+    ## Программа: divide, 9 букв, начинается на р...
+    # Получить у пользователя ответ
     user_input = input(f"{word}, {len(word)} букв, начинается на {translation[0]}: ")
     print(user_input)
+    # number_of_words -= 1
 
-# Вывести одно из сообщений (обратите внимание: слово выводится с большой буквы):
-## Программа: Неверно. Divide — это разделять.
-## Программа: Верно, Level — это уровень.
+    # сравнить ответ со значением в словаре words
     if user_input.lower() == translation:
+    # Вывести одно из сообщений (обратите внимание: слово выводится с большой буквы):
 
-# Записать результат в answers в формате:
+    # Записать результат в answers в формате:
 
-## {
-##   "mirror": True,
-##  "divide": False,
-##   "usual": True,
-##   ...
-## }
-        answers[translation] = True
+    ## {
+    ##   "mirror": True,
+    ##  "divide": False,
+    ##   "usual": True,
+    ##   ...
+    ## }
+        answers[word] = True
+    ## Программа: Верно, Level — это уровень.
         print(f"Верно, {word.title()} — это {translation}.")
-        # print(correct)
 
     else:
-        answers[translation] = False
+        answers[word] = False
+    ## Программа: Неверно. Divide — это разделять.
         print(f"Неверно, {word.title()} — это {translation}.")
-        # print(incorrect)
-
-    # print(f"{correct}\n{incorrect}")
-
-    # print("\nПечатаю словарь с ответами")
-    # print(answers)
 
 
-# Когда слова закончились, вывести в зависимости от результата:
+print("\nПечатаю словарь с ответами")
+print(answers)
 
-## Правильно отвечены слова: 
-## divide
-## usual
-## hidden
-## mirror
 
-## Неправильно отвечены слова: 
-## hero
+    # Когда слова закончились, вывести в зависимости от результата:
 
-for translation, value in answers.items():
-    if value == True:
-        right_answered_words.append(translation)
-        print("\nПравильно отвечены слова")
-        print(right_answered_words)
-    else:
-        wrong_answered_words.append(translation)
-        print("\nНеправильно отвечены слова")
-        print(wrong_answered_words)
+    ## Правильно отвечены слова: 
+    ## divide
+    ## usual
+    ## hidden
+    ## mirror
+
+    ## Неправильно отвечены слова: 
+    ## hero
+
+
+for key, value in answers.items():
+        if value == True:
+            right_answered_words.append(key)
+        else:
+            wrong_answered_words.append(key)
+
+print(f"\n{correct}:")#{right_answered_words}
+# print(right_answered_words)
+
+for i in range(len(right_answered_words)):
+    print(right_answered_words[i])
+
+
+print(f"\n{incorrect}:")#{wrong_answered_words}
+# print(wrong_answered_words)
+
+for i in range(len(wrong_answered_words)):
+    print(wrong_answered_words[i])
 
 
 # Посчитать количество правильно отгаданных слов, например, получив список ключей из answers.
-amount_right_answered_words = len(right_answered_words)
 
-# Используйте его в качестве ключа, чтобы получить ранг пользователя.
+for value in answers.values():
+    if value == True:
+        amount_right_answered_words += 1
 
-# Вывеcти ранг пользователя, например:
 
+# amount_right_answered_words = len(right_answered_words)
+# amount_right_answered_words = len(list(answers.keys()))
+# print(amount_right_answered_words)
+
+# Вывеcти ранг пользователя, используя в качестве ключа количество правильно отгаданных слов
+## Например:
 ## Ваш ранг: 
 ## Хорошо
 
 for key, level in levels.items():
-    if level == amount_right_answered_words:
+    if key == amount_right_answered_words:
         print(f"Ваш ранг: {level}.")
