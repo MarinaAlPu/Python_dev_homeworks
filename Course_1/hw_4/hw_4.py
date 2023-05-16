@@ -81,7 +81,7 @@ else:
 for level_en, level_ru in levels_for_select.items():
     if edited_user_input == level_ru:
         words = words_all[level_en]
-        print(words)
+        # print(words)
         break
     else:
         pass
@@ -95,7 +95,7 @@ user_input = input(f"\nВыбран уровень сложности {edited_us
 for word, translation in words.items():
 # Получить у пользователя ответ
     user_input = input(f"{word}, {len(translation)} букв, начинается на {translation[0]}: ")
-    print(user_input)
+    # print(user_input)
     if user_input.lower() == translation:
 # Записать результат в answers
         answers[word] = True
@@ -105,7 +105,7 @@ for word, translation in words.items():
         print(f"Неверно, {word.title()} — это {translation}.")
 
 
-print(f"\nПечатаю словарь с ответами {answers}")
+# print(f"\nПечатаю словарь с ответами {answers}")
 
 
 # Когда слова закончились, вывести правильно и неправильно отвеченные слова
@@ -133,8 +133,8 @@ for value in answers.values():
     if value == True:
         amount_right_answered_words += 1
 
-amount_right_answered_words = len(right_answered_words)
-amount_right_answered_words = len(list(answers.keys()))
+# amount_right_answered_words = len(right_answered_words)
+# amount_right_answered_words = len(list(answers.keys()))
 # print(amount_right_answered_words)
 
 
