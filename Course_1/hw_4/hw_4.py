@@ -52,7 +52,7 @@ answers = {}
 right_answered_words = []
 wrong_answered_words = []
 
-# user_try = 2
+levels_for_intro = None
 user_input = None
 edited_user_input = None
 letter_unneeded = "ё"
@@ -63,12 +63,14 @@ incorrect = "Неправильно отвечены слова:"
 amount_right_answered_words = 0
 
 
+# Собрать строку с уровнями сложности для выбора
 levels_for_intro = ", ".join(LEVELS)
 
-print(f"Выберите уровень сложности: {levels_for_intro}.\n")
-
 # Получить у пользователя уровень сложности
-user_input = input().lower()
+print(f"Выберите уровень сложности из следующих: {levels_for_intro}.\n")
+
+user_input = input().lower().strip()
+
 
 # Проверить введённое значение на наличие буквы "ё" и заменить её на букву "е"
 if letter_unneeded in user_input:
@@ -77,15 +79,22 @@ else:
     edited_user_input = user_input
 
 
+while True:
+    if edited_user_input not in LEVELS:
+        user_input = input(f"\nТакого уровня не существует.\nВыберите уровень сложности из следующих: {levels_for_intro}.\n").lower().strip()
+        if letter_unneeded in user_input:
+            edited_user_input = user_input.replace(letter_unneeded, letter_needed)
+        else:
+            edited_user_input = user_input
+    else:
+        break
+
+
 # Положить в словарь words один из словарей в зависимости полученного от пользователя уровня сложности
 for level_en, level_ru in levels_for_select.items():
     if edited_user_input == level_ru:
         words = words_all[level_en]
-        # print(words)
         break
-    else:
-        pass
-        # user_input = input(f"\nТакого уровня не существует.\nВыберите уровень сложности из следующих: {levels_for_intro}.\n").lower()
 
 
 user_input = input(f"\nВыбран уровень сложности {edited_user_input}, мы предложим {WORDS} слов, подберите перевод.\nНажмите Enter.")
@@ -95,7 +104,6 @@ user_input = input(f"\nВыбран уровень сложности {edited_us
 for word, translation in words.items():
 # Получить у пользователя ответ
     user_input = input(f"{word}, {len(translation)} букв, начинается на {translation[0]}: ")
-    # print(user_input)
     if user_input.lower() == translation:
 # Записать результат в answers
         answers[word] = True
@@ -103,9 +111,6 @@ for word, translation in words.items():
     else:
         answers[word] = False
         print(f"Неверно, {word.title()} — это {translation}.")
-
-
-# print(f"\nПечатаю словарь с ответами {answers}")
 
 
 # Когда слова закончились, вывести правильно и неправильно отвеченные слова
@@ -121,24 +126,19 @@ print(f"\n{correct}:")
 for i in range(len(right_answered_words)):
     print(right_answered_words[i])
 
-
 # Список неправильно отвеченных слов
 print(f"\n{incorrect}:")
 for i in range(len(wrong_answered_words)):
     print(wrong_answered_words[i])
 
 
-# Посчитать количество правильно отгаданных слов, например, получив список ключей из answers
+# Посчитать количество правильно отгаданных слов
 for value in answers.values():
     if value == True:
         amount_right_answered_words += 1
 
-# amount_right_answered_words = len(right_answered_words)
-# amount_right_answered_words = len(list(answers.keys()))
-# print(amount_right_answered_words)
 
-
-# Вывеcти ранг пользователя, используя в качестве ключа количество правильно отгаданных слов
+# Вывеcти ранг пользователя
 for key, level in levels.items():
     if key == amount_right_answered_words:
         print(f"\nВаш ранг: {level}.")
