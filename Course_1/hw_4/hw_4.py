@@ -55,11 +55,6 @@ wrong_answered_words = []
 levels_for_intro = None
 user_input = None
 edited_user_input = None
-letter_unneeded = "ё"
-letter_needed = "е"
-dict_name = "words"
-correct = "Правильно отвечены слова:"
-incorrect = "Неправильно отвечены слова:"
 amount_right_answered_words = 0
 
 
@@ -73,8 +68,8 @@ user_input = input().lower().strip()
 
 
 # Проверить введённое значение на наличие буквы "ё" и заменить её на букву "е"
-if letter_unneeded in user_input:
-    edited_user_input = user_input.replace(letter_unneeded, letter_needed)
+if "ё" in user_input:
+    edited_user_input = user_input.replace("ё", "е")
 else:
     edited_user_input = user_input
 
@@ -82,8 +77,8 @@ else:
 while True:
     if edited_user_input not in LEVELS:
         user_input = input(f"\nТакого уровня не существует.\nВыберите уровень сложности из следующих: {levels_for_intro}.\n").lower().strip()
-        if letter_unneeded in user_input:
-            edited_user_input = user_input.replace(letter_unneeded, letter_needed)
+        if "ё" in user_input:
+            edited_user_input = user_input.replace("ё", "е")
         else:
             edited_user_input = user_input
     else:
@@ -97,14 +92,14 @@ for level_en, level_ru in levels_for_select.items():
         break
 
 
-user_input = input(f"\nВыбран уровень сложности {edited_user_input}, мы предложим {WORDS} слов, подберите перевод.\nНажмите Enter.")
+user_input = input(f"\nВыбран уровень сложности {edited_user_input}, мы предложим {WORDS} слов, подберите перевод.\nНажмите Enter.\n")
 
 
 # Запустить цикл по пяти словам из словаря words
 for word, translation in words.items():
 # Получить у пользователя ответ
     user_input = input(f"{word}, {len(translation)} букв, начинается на {translation[0]}: ")
-    if user_input.lower() == translation:
+    if user_input.lower().strip() == translation:
 # Записать результат в answers
         answers[word] = True
         print(f"Верно, {word.title()} — это {translation}.")
@@ -122,12 +117,12 @@ for key, value in answers.items():
 
 
 # Список правильно отвеченных слов
-print(f"\n{correct}:")
+print("\nПравильно отвечены слова:")
 for i in range(len(right_answered_words)):
     print(right_answered_words[i])
 
 # Список неправильно отвеченных слов
-print(f"\n{incorrect}:")
+print("\nНеправильно отвечены слова:")
 for i in range(len(wrong_answered_words)):
     print(wrong_answered_words[i])
 
