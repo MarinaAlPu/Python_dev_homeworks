@@ -110,10 +110,10 @@ for word, translation in words.items():
 
 # Когда слова закончились, вывести правильно и неправильно отвеченные слова
 for key, value in answers.items():
-        if value == True:
-            right_answered_words.append(key)
-        else:
-            wrong_answered_words.append(key)
+    if value == True:
+        right_answered_words.append(key)
+    else:
+        wrong_answered_words.append(key)
 
 
 # Список правильно отвеченных слов
