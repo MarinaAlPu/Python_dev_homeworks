@@ -57,6 +57,8 @@ words_to_decode = ["yesterday", "dream", "python", "dog", "peace"]
 word_to_decode = ""
 encoded_word = ""
 word = ""
+right_answered_words = 0
+wrong_answered_words = 0
 answers_to_ask = 5
 
 # **Шаг 1.** Напишите функцию morse_encode(word), которая переводит слова на английском языке в последовательности точек и тирe.
@@ -98,13 +100,18 @@ def get_word():
 # Отвечено верно: 2
 # Отвечено неверно: 3
 
-def print_statistics(answers):
+def print_statistics(answers, right_answered_words, wrong_answered_words):
     """
     На основе списка answers типа выводит статистику
     """
-    
-    
-    pass
+
+    print(f"Всего решено задачек: {len(answers)}")
+
+    right_answered_words = answers.count(True)
+    print(f"Отвечено верно: {right_answered_words}")
+
+    wrong_answered_words = answers.count(False)
+    print(f"Отвечено неверно: {wrong_answered_words}")
 
 
 # Шаг 4.  При старте программы выведите приветственную информацию.
@@ -124,13 +131,13 @@ user_input = input("Сегодня мы потренируемся расшиф�
 for i in range(len(words_to_decode)):
 
     word = get_word()
-    print(f"Случайное слово в цикле for i in range(len(words_to_decode)): {word}")
+    print(f"\nСлучайное слово в цикле for i in range(len(words_to_decode)): {word}")
 
     morse_encode(word)
-    print(f"Случайное слово закодировали: {morse_encode(word)}")
+    print(f"\nСлучайное слово закодировали: {morse_encode(word)}")
 
     # - выводите для пользователя
-    print(f"Слово {i + 1} – {morse_encode(word)}")
+    print(f"\nСлово {i + 1} – {morse_encode(word)}")
 
     # - получайте ввод
     user_answer = input()
@@ -141,7 +148,7 @@ for i in range(len(words_to_decode)):
         print(f"Неверно, {word}!")
         # - верность ответа складывайте в переменную answers
         answers.append(False)
-        print(answers)
+        print(f"\nСписок верно / неверно: {answers}\n")
 
         answers_to_ask -= 1
 
@@ -150,16 +157,14 @@ for i in range(len(words_to_decode)):
         print(f"Верно, {word}!")
                 # - верность ответа складывайте в переменную answers
         answers.append(True)
-        print(answers)
+        print(f"Неверно: {word}!")
 
         answers_to_ask -= 1
 
 # Слова могут повторяться во время тренировки, это не страшно.
 
-
 # Шаг 6. Выведите статистику с помощью вызова ранее написанной функции
 
-
-print_statistics(answers)
+print_statistics(answers, right_answered_words, wrong_answered_words)
 
 # Протестируйте работу приложения и отправьте ссылку на colab
