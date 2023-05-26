@@ -1,5 +1,5 @@
-import random
-# from random import sample
+# import random
+from random import sample
 
 
 morse = {
@@ -71,13 +71,19 @@ def morse_encode(word, encoded_word):
     """
     Переводит слова на английском языке в последовательности точек и тирe.
     """
-    for i in range(len(word)):
-        if word[i] in morse:
-            encoded_word = (encoded_word + morse[word[i]])
+    # for i in range(len(word)):
+    #     if word[i] in morse:
+    #         encoded_word = (encoded_word + morse[word[i]])
             # print(f"\Буква: {encoded_word}")
     # print(f"\nПечатаю слово {word} на морзе: {encoded_word}")
-    return encoded_word
+    # return encoded_word
 
+    encoded_word = []
+
+    for symbol in word:
+        encoded_word.append(morse[symbol])
+        word_to_decode = " ".join(encoded_word)
+    return word_to_decode
 
 # Шаг 2. Напишите функцию get_word() которая получает случайное слово из списка.
 def get_word(word):
@@ -86,7 +92,7 @@ def get_word(word):
     """
     print(f"\nСейчас достанем случайное слово из списка words_to_decode в функции get_word(): {word}")
     
-    word = random.sample(words_to_decode, 1)[0]
+    word = sample(words_to_decode, 1)[0]
     print(f"\nСлучайное слово в функции get_word(): {word}")
     return word
     
@@ -155,7 +161,6 @@ for i in range(len(words_to_decode)):
         print(f"Верно, {word}!")
                 # - верность ответа складывайте в переменную answers
         answers.append(True)
-        print(f"Неверно: {word}!")
 
         answers_to_ask -= 1
 
