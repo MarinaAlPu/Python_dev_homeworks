@@ -50,14 +50,14 @@ morse = {
     ")": "-.--.-",
 }
 
-answers = []
 
 # **Шаг 0.** Составьте список английских слов и фраз, которые будете расшифровывать.
 words_to_decode = ["yesterday", "dream", "python", "dog", "peace"]
-encoded_word = ""
-word = ""
-right_answered_words = 0
-wrong_answered_words = 0
+answers = []
+# encoded_word = ""
+# word = ""
+# right_answered_words = 0
+# wrong_answered_words = 0
 answers_to_ask = 5
 
 # **Шаг 1.** Напишите функцию morse_encode(word), которая переводит слова на английском языке в последовательности точек и тирe.
@@ -67,7 +67,7 @@ answers_to_ask = 5
 # morse_encode("python") >>> .--.-.---....----.
 # morse_encode("dog") >>> -..-----.
 # morse_encode("peace") >>> .--...--.-..
-def morse_encode(word, encoded_word):
+def morse_encode(word):
     """
     Переводит слова на английском языке в последовательности точек и тирe.
     """
@@ -79,18 +79,19 @@ def morse_encode(word, encoded_word):
     # return encoded_word
 
     encoded_word = []
-
+    # print(f"\nПустой список {encoded_word}")
     for symbol in word:
         encoded_word.append(morse[symbol])
-        word_to_decode = " ".join(encoded_word)
+    word_to_decode = " ".join(encoded_word)
+    # print(f"\nПечатаю слово для расшифровки {word_to_decode}")
     return word_to_decode
 
 # Шаг 2. Напишите функцию get_word() которая получает случайное слово из списка.
-def get_word(word):
+def get_word():
     """
     Получает случайное слово из списка
     """
-    print(f"\nСейчас достанем случайное слово из списка words_to_decode в функции get_word(): {word}")
+    print(f"\nСейчас достанем случайное слово из списка words_to_decode в функции get_word()")
     
     word = sample(words_to_decode, 1)[0]
     print(f"\nСлучайное слово в функции get_word(): {word}")
@@ -104,7 +105,7 @@ def get_word(word):
 # Отвечено верно: 2
 # Отвечено неверно: 3
 
-def print_statistics(answers, right_answered_words, wrong_answered_words):
+def print_statistics(answers):
     """
     На основе списка answers типа выводит статистику
     """
@@ -134,14 +135,14 @@ user_input = input("Сегодня мы потренируемся расшиф�
 
 for i in range(len(words_to_decode)):
 
-    word = get_word(word)
+    word = get_word()
     print(f"\nСлучайное слово в цикле for i in range(len(words_to_decode)): {word}")
 
-    morse_encode(word, encoded_word)
-    print(f"\nСлучайное слово закодировали: {morse_encode(word, encoded_word)}")
+    morse_encode(word)
+    print(f"\nСлучайное слово закодировали: {morse_encode(word)}")
 
     # - выводите для пользователя
-    print(f"\nСлово {i + 1} – {morse_encode(word, encoded_word)}")
+    print(f"\nСлово {i + 1} – {morse_encode(word)}")
 
     # - получайте ввод
     user_answer = input()
@@ -168,6 +169,6 @@ for i in range(len(words_to_decode)):
 
 # Шаг 6. Выведите статистику с помощью вызова ранее написанной функции
 
-print_statistics(answers, right_answered_words, wrong_answered_words)
+print_statistics(answers)
 
 # Протестируйте работу приложения и отправьте ссылку на colab
