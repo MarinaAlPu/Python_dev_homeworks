@@ -6,14 +6,6 @@ points = 0
 number_of_games = 0
 
 
-def write_user_in_history(history_file_name, user_name, points):
-    """
-    Записывает рекорд пользователя в файл.
-    """
-    with open(history_file_name, 'a', encoding='UTF-8') as history_file:
-        history_file.write(f"\n{user_name} {points}")
-
-
 def get_word_to_guess(words_file_name, points):
     """
     Выбирает первое слово из списка, перемешивает буквы и предлагает пользователю его отгадать.
@@ -57,19 +49,50 @@ def get_word_to_guess(words_file_name, points):
     return points
 
 
+def write_user_in_history(history_file_name, user_name, points):
+    """
+    Записывает рекорд пользователя в файл.
+    """
+    with open(history_file_name, 'a', encoding='UTF-8') as history_file:
+        history_file.write(f"\n{user_name} {points}")
+
+
+def get_statistics(history_file_name):
+    """
+    выводит статистику из прошлых игр, с учетом последней игры.
+    """
+    with open(history_file_name, encoding='UTF-8') as history_file:
+        # content_history = history_file.read()
+        """
+        После прочтения файла в строке 65 , указатель устанавливается на его конец и дальше ему читать уже нечего.
+        Попробуй использовать seek(0) чтобы перевести указатель на начало файла
+        """
+        # print(f"Содержимое документа history.txt:\n{content_history}")
+        # games_list = history_file.readlines()
+        number_of_games = len(history_file.readlines())
+        # print(f"Список строк: {games_list}")
+        print(f"Всего игр сыграно: {number_of_games}")
+
+    with open(history_file_name, encoding='UTF-8') as records_file:
+        record = 0
+        for data in records_file:
+            pass
+
+
 user_name = input("Введите ваше имя\n")
 
 points_for_history = get_word_to_guess('words.txt', points)
 
 write_user_in_history('history.txt', user_name, points_for_history)
 
-
+get_statistics('history.txt')
 
 # Вывести статистику из прошлых игр с учётом этой игры
 # Всего игр сыграно: 27
 # Максимальный рекорд: 200
 
 # with open('history.txt', encoding='UTF-8') as history_file:
+
 #     content_history = history_file.read()
 #     print(f"Содержимое документа history.txt:\n{content_history}")
 #     games_list = history_file.readlines()
