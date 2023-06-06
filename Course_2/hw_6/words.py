@@ -15,10 +15,11 @@ def get_word_to_guess(words_file_name, points):
         content = words_file.read().split("\n")
 
         for i_word in range(len(content)):
+            # Получить слово из списка
             word = content[i_word]
             i_word += 1
 
-            # Получить слово из списка
+            # Записать буквы, из которых состоит слово, в виде списка
             word_as_list = []
             for i_letter in range(len(word)):
                 letter = word[i_letter]
