@@ -9,7 +9,7 @@ record = 0
 
 def get_word_to_guess(words_file_name, points):
     """
-    Выбирает первое слово из списка, перемешивает буквы и предлагает пользователю его отгадать.
+    Выбирает первое слово из списка, перемешивает буквы и предлагает пользователю его отгадать
     """
     with open(words_file_name, 'r') as words_file:
         content = words_file.read().split("\n")
@@ -44,7 +44,7 @@ def get_word_to_guess(words_file_name, points):
 
 def write_user_in_history(history_file_name, user_name, points):
     """
-    Записывает рекорд пользователя в файл.
+    Записывает рекорд пользователя в файл
     """
     with open(history_file_name, 'a', encoding='UTF-8') as history_file:
         history_file.write(f"\n{user_name} {points}")
@@ -52,7 +52,7 @@ def write_user_in_history(history_file_name, user_name, points):
 
 def get_statistics(history_file_name):
     """
-    выводит статистику из прошлых игр, с учетом последней игры.
+    выводит статистику из прошлых игр, с учетом последней игры
     """
     with open(history_file_name, encoding='UTF-8') as history_file:
         number_of_games = len(history_file.readlines())
