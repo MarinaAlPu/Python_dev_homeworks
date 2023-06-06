@@ -1,9 +1,11 @@
 import random
 
 
+records = []
 points_for_right_answer = 10
 points = 0
 number_of_games = 0
+# record = 0
 
 
 def get_word_to_guess(words_file_name, points):
@@ -73,10 +75,39 @@ def get_statistics(history_file_name):
         # print(f"Список строк: {games_list}")
         print(f"Всего игр сыграно: {number_of_games}")
 
+
     with open(history_file_name, encoding='UTF-8') as records_file:
-        record = 0
-        for data in records_file:
-            pass
+        for records_data in records_file:
+            name, record = records_data.rstrip("\n").split(" ")
+            records.append(record)
+        print(f"Список рекордов: {records}")
+
+        record_max = max(records)
+        print(f"Максимальный рекорд: : {record_max}")
+
+
+
+
+    # with open(history_file_name, encoding='UTF-8') as records_file:
+    #     # for i in range(number_of_games):
+    #
+    #
+    #     # Затем собираем список результатов:
+    #     # records = [int(rec) for rec in file]
+    #
+    #     for records_data in records_file:
+    #         # data = records_data.rstrip("\n").split(" ")
+    #         # print(f"Печатаем data: {data}")
+    #         # name = data[0]
+    #         # record = data[1]
+    #
+    #         name, record = records_data.rstrip("\n").split(" ")
+    #
+    #         records.append(record)
+    #     print(records)
+    #
+    #     record = max(records)
+    #     print(f"Максимальный рекорд: : {record}")
 
 
 user_name = input("Введите ваше имя\n")
