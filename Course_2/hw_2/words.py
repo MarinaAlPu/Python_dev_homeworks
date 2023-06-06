@@ -30,7 +30,7 @@ def get_word_to_guess(words_file_name, points):
 
             # Предложить пользователю отгадать слово
             word_to_guess = ("".join(word_as_list))
-            user_answer = input(f"Угадайте слово: {word_to_guess} ")
+            user_answer = input(f"Угадайте слово: {word_to_guess}\n")
 
             # Проверить правильность ответа пользователя
             if user_answer == word:
