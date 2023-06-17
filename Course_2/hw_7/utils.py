@@ -21,6 +21,7 @@ def load_students():
 # print(students_list)
 # print(students_list[0])
 
+
 def load_professions():
     """
     Загружает список профессий из файла
@@ -86,7 +87,7 @@ def check_fitness(student, profession):
     """
     # По номеру студента получить словарь с данными студента
     student_data_dict = get_student_by_pk(student)
-    print(f"Печатаю словарь с данными студента {student_data_dict}")
+    # print(f"Печатаю словарь с данными студента {student_data_dict}")
 
     # По номеру студента получить список скиллов студента
     student_skills_list = student_data_dict["skills"]
@@ -124,8 +125,8 @@ def check_fitness(student, profession):
 
     ## Посчитать количество скиллов профессии, которых нет у студента
     student_skills_lacks = list(profession_skills.difference(student_skills))
-    print("Список скиллов, которых не хватает студенту:")
-    print(student_skills_lacks)
+    # print("Список скиллов, которых не хватает студенту:")
+    # print(student_skills_lacks)
 
     # Записать данные в словарь по форме:
     # {
@@ -142,21 +143,20 @@ def check_fitness(student, profession):
     return check_fitness_dict
 
 
-
 # Получить ввод pk пользователя
 student_input = input("Введите номер студента\n")
 
 # Проверить существование такого пользователя
 students_data_list, students_list = load_students()
-print(students_data_list)
-print(students_list)
+# print(students_data_list)
+# print(students_list)
 # print(students_list[0])
 
 # Если такой студент есть – выведите информацию о пользователе
 if int(student_input) in students_list:
-    print("This is a table")
+    # print("This is a table")
     student_info = get_student_by_pk(int(student_input))
-    print(student_info)
+    # print(student_info)
     student_name = student_info['full_name']
 
 # Если такого студента нет - завершитесь
@@ -170,36 +170,30 @@ profession_input = input(f"Выберите специальность для о
 
 # Проверить существование такой профессии
 professions_data_list, professions_list = load_professions()
-print(professions_data_list)
-print(professions_list)
+# print(professions_data_list)
+# print(professions_list)
 # print(professions_list[0])
 
 # Если такая специальность есть – получите соответствие с помощью  check_fitness
 if profession_input.title() in professions_list:
-    print("London is the capital of Great Britain")
+    # print("London is the capital of Great Britain")
     profession_info = get_profession_by_title(profession_input.title())
-    print(profession_info)
+    # print(profession_info)
 
     check_fitness_dict = check_fitness(int(student_input), profession_input)
-    print(f"Печатаю словарь с проверками {check_fitness_dict}")
+    # print(f"Печатаю словарь с проверками {check_fitness_dict}")
 
     # Пригодность 50 %
     # Программа: Jane Snake знает Python, Linux
     # Программа: Jane Snake не знает Docker, SQL
 
-    print(f"Пригодность {check_fitness_dict['fit_percent']} %\n"
-          f"{student_name} знает {check_fitness_dict['has']}\n"
-          f"{student_name} не знает {check_fitness_dict['lacks']}")
-
+    print(f"Пригодность {check_fitness_dict['fit_percent']}\n"
+          # f"{student_name} знает {check_fitness_dict['has']}\n"
+          f"{student_name} знает {', '.join(check_fitness_dict['has'])}\n"
+          # f"{student_name} не знает {check_fitness_dict['lacks']}")
+          f"{student_name} не знает {', '.join(check_fitness_dict['lacks'])}")
 
 # Если такой специальности нет - завершитесь
 else:
     print("У нас нет такой специальности")
     quit()
-
-
-
-
-
-
-
