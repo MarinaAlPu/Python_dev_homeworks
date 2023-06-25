@@ -1,4 +1,5 @@
 import json
+import requests
 
 from data_questions.questions_class import Question
 
@@ -13,6 +14,18 @@ def load_data(path) -> list:
             questions.append(question)
         return questions
 
+def load_data_json(path) -> list:
+    """Загружает данные с сайта. Создаёт список экземпляров класса Question"""
+    resp = requests.get(path)
+    data = resp.json()
+
+    # with open(path) as file:
+    # data = json.load(file)
+    questions = []
+    for q in data:
+        question = Question(q["q"], q["d"], q["a"])
+        questions.append(question)
+    return questions
 
 def get_statistics(questions):
     """Выводит статистику"""
