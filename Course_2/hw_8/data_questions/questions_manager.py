@@ -19,8 +19,6 @@ def load_data_json(path) -> list:
     resp = requests.get(path)
     data = resp.json()
 
-    # with open(path) as file:
-    # data = json.load(file)
     questions = []
     for q in data:
         question = Question(q["q"], q["d"], q["a"])

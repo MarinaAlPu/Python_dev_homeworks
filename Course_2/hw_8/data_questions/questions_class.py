@@ -31,6 +31,6 @@ class Question:
             return f"Ответ верный, получено {self.points} баллов"
         return f"Ответ неверный, верный ответ - {self.right_answer}"
 
-    # def __repr__(self):
-    #     return f"\nЯ экземпляр с параметрами:\nвопрос - {self.question_text}\nсложность - {self.question_level}\nверный ответ - {self.right_answer}" \
-    #            f"\nза меня дают - {self.points} баллов"
+    def __repr__(self):
+        return f"\nЯ экземпляр с параметрами:\nвопрос - {self.question_text}\nсложность - {self.question_level}\nверный ответ - {self.right_answer}" \
+               f"\nза меня дают - {self.points} баллов"
