@@ -1,9 +1,11 @@
 from utils import load_random_word
 
-from basic_word_class import BasicWord
+# from basic_word_class import BasicWord
 from player_class import Player
 
 MIN_QUANTITY_OF_LETTERS = 3
+i = 0
+used_words = []
 
 # user_name = input("Ввведите имя игрока\n")
 
@@ -12,65 +14,63 @@ MIN_QUANTITY_OF_LETTERS = 3
 player = Player("PLAYER")#"(user_name)
 # print(player)
 
-original_word = load_random_word().original_word
-# quantity_of_valid_words = len(load_random_word().valid_words)
 
-quantity_of_valid_words = load_random_word().count_valid_words()
+original_word_and_subwords = load_random_word()
+print(original_word_and_subwords)
+
+original_word = original_word_and_subwords.original_word
+print(original_word)
+
+# quantity_of_valid_words_1 = len(original_word_and_subwords.valid_words)
+# print(quantity_of_valid_words_1)
+
+quantity_of_valid_words = original_word_and_subwords.count_valid_words()
+print(quantity_of_valid_words)
 
 print(f"Составьте {quantity_of_valid_words} слов из слова '{original_word}'\n"
     f"Слова должны быть не короче {MIN_QUANTITY_OF_LETTERS} букв\n"
-    f"Чтобы закончить игру, угадайте все слова или напишите 'stop'\n"
+    f"Чтобы закончить игру, угадайте все слова или напишите 'stop'/'стоп'\n"
     f"Поехали, ваше первое слово?")
 
-for i in range(quantity_of_valid_words):
 
-# Получить от пользователя слово
-user_word = input()
-used_words = []
-# Выполнить проверки
-## Если слово короче 3 букв – это неудачное слово
-# Пользователь: мя
-# Программа: слишком короткое слово
-if len(user_word) < MIN_QUANTITY_OF_LETTERS:
-    print("слишком короткое слово")
+while player.count_used_words() < quantity_of_valid_words:
+# for i in range(quantity_of_valid_words):
+    # Получить от пользователя слово
+    user_word = input()
 
-## Если слова нет в списке допустимых у BasicWord – это неудачное слово
-# Пользователь: ъуъ
-# Программа: неверно
-# load_random_word().is_word_valid(user_word)
-# print(load_random_word().valid_words)
-# print(load_random_word().is_word_valid(user_word))
+    # Выполнить проверки
+# ## Если слово stop или стоп, прекратить игра
+# # Пользователь: стоп
+# # Программа: (выводит статистику, см шаг 6)
+# # Программа: Игра завершена, вы угадали 8 слов!
+    if user_word in ["stop", "стоп"]:
+        print(f"Игра завершена, вы угадали {player.count_used_words()} слов!")
+        quit()
 
-elif load_random_word().is_word_valid(user_word): # == True:
-    print("неверно")
+    ## Если слово короче 3 букв – это неудачное слово
+    elif len(user_word) < MIN_QUANTITY_OF_LETTERS:
+        print("слишком короткое слово")
 
-## Если слово уже было угадано пользователем (Player) – это неудачное слово
-# Пользователь: руна
-# Программа: уже использовано
-elif user_word in used_words:
-    print("уже использовано")
+    # ## Если слова нет в списке допустимых у BasicWord – это неудачное слово
+    elif original_word_and_subwords.is_word_valid(user_word) != True:
+        # print(original_word)
+        # print()
+        print("неверно")
 
-## Если слово stop или стоп, то игра прекращается
-# Пользователь: стоп
-# Программа: (выводит статистику, см шаг 6)
-# Программа: Игра завершена, вы угадали 8 слов!
-elif user_word in ["stop", "стоп"]:
-    print("уже использовано")
+    # ## Если слово уже было угадано пользователем (Player) – это неудачное слово
+    elif user_word in used_words:
+        print("уже использовано")
 
-
-# Если все проверки выше пройдены, то слово хорошее, его нужно добавить слово в список использованных слов класса Player и вывести оповещение об этом пользователю:
-# Пользователь: руна
-# Программа: верно
-else:
-    used_words = player.add_new_word(user_word)
-    print("верно")
-
+    # # Если все проверки пройдены, добавить слово в список использованных слов класса Player и вывести оповещение об этом пользователю
+    else:
+        used_words = player.add_new_word(user_word)
+        print(used_words)
+        print("верно")
+    i += 1
 
 
 # Шаг 6
-#Выведите количество угаданных слов. Информацию получите из экземпляра класса Player.
-# Программа: Игра завершена, вы угадали 8 слов!
+#Вывести количество угаданных слов. Информацию получите из экземпляра класса Player.
+print(f"Игра завершена, вы угадали {player.count_used_words()} слов!")
 
-
-
-
+quit()
