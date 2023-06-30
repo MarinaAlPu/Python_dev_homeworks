@@ -1,16 +1,5 @@
-"""
-Создайте класс `Player`. Этот класс будет содержать в себе:
-
-**Поля:**
-- имя пользователя,
-- использованные слова пользователя.
-
-Не забудьте определить метод  `__repr__`
-"""
-
-
 class Player:
-    def __init__(self, user_name, used_words):
+    def __init__(self, user_name, used_words=[]):
         self.user_name = user_name
         self.used_words = used_words
 
@@ -18,23 +7,22 @@ class Player:
         """
         Получить количество использованных слов
         """
-        pass
+        return len(self.used_words)
 
-    def add_new_word(self):
+    def add_new_word(self, user_word):
         """
         Добавить слово в использованные слова
         """
-        pass
+        self.used_words.append(user_word)
+        return self.used_words
 
-    def is_new_word_used(self) -> bool:
+    def is_new_word_used(self, user_word) -> bool:
         """
         Проверить использование данного слова до этого
         """
-        pass
+        if user_word in self.used_words:
+            return True
+        return False
 
     def __repr__(self) -> str:
         return f"Игрок {self.user_name}\nИспользованные слова: {self.used_words}"
-
-
-player = Player("Марина", "разные другие слова")
-print(player)
