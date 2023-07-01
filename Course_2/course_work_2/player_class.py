@@ -1,7 +1,7 @@
 class Player:
-    def __init__(self, user_name, used_words=[]):
+    def __init__(self, user_name, used_words=None):
         self.user_name = user_name
-        self.used_words = used_words
+        self.used_words = used_words if used_words else []
 
     def count_used_words(self) -> int:
         """
