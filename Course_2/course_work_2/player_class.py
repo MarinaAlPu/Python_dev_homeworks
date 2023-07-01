@@ -25,4 +25,4 @@ class Player:
         return False
 
     def __repr__(self) -> str:
-        return f"Игрок {self.user_name}\nИспользованные слова: {self.used_words}"
+        return f"Игрок '{self.user_name}'\nИспользованные слова: {self.used_words}"

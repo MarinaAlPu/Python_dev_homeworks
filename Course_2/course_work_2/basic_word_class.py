@@ -19,5 +19,5 @@ class BasicWord:
         return len(self.valid_words)
 
     def __repr__(self) -> str:
-        return f"Начальное слово: {self.original_word}" \
+        return f"Начальное слово: '{self.original_word}'" \
                f"\nДопустимые подслова: {self.valid_words}"
