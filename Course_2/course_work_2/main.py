@@ -4,11 +4,6 @@ from player_class import Player
 
 
 MIN_QUANTITY_OF_LETTERS = 3
-original_word_and_subwords = ""
-original_word = ""
-quantity_of_valid_words = 0
-i = 0
-used_words = []
 
 
 # Пролучить имя игрока
@@ -32,26 +27,25 @@ print(f"Составьте {quantity_of_valid_words} слов из слова '{
 
 
 while player.count_used_words() < quantity_of_valid_words:
-# for i in range(quantity_of_valid_words):
     # Получить от пользователя слово
     user_word = input()
 
     # Выполнить проверки
     # Если слово stop или стоп, прекратить игру и вывести статистику
     if user_word in ["stop", "стоп"]:
+        break
         print(f"Игра завершена, вы угадали {player.count_used_words()} слов!")
-        quit()
 
     # Если слово короче 3 букв
     elif len(user_word) < MIN_QUANTITY_OF_LETTERS:
         print("слишком короткое слово")
 
     # Если слова нет в списке допустимых
-    elif original_word_and_subwords.is_word_valid(user_word) != True:
+    elif original_word_and_subwords.is_word_valid(user_word) is False:
         print("неверно")
 
     # Если слово уже было угадано пользователем
-    elif user_word in used_words:
+    elif player.is_new_word_used(user_word):
         print("уже использовано")
 
     # Если все проверки пройдены, добавить слово в список использованных слов класса Player и вывести оповещение об этом пользователю
@@ -60,9 +54,6 @@ while player.count_used_words() < quantity_of_valid_words:
         print(used_words)
         print("верно")
 
-    i += 1
 
 # Вывести количество угаданных слов
 print(f"Игра завершена, вы угадали {player.count_used_words()} слов!")
-
-quit()

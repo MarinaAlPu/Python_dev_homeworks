@@ -20,9 +20,7 @@ class Player:
         """
         Проверить использование данного слова до этого
         """
-        if user_word in self.used_words:
-            return True
-        return False
+        return user_word in self.used_words
 
     def __repr__(self) -> str:
         return f"Игрок '{self.user_name}'\nИспользованные слова: {self.used_words}"

@@ -7,10 +7,7 @@ class BasicWord:
         """
         Проверяет введённое слово в списке допустимых подслов
         """
-        if user_word in self.valid_words:
-            return True
-        else:
-            return False
+        return user_word in self.valid_words
 
     def count_valid_words(self) -> int:
         """
