@@ -34,7 +34,6 @@ while player.count_used_words() < quantity_of_valid_words:
     # Если слово stop или стоп, прекратить игру и вывести статистику
     if user_word in ["stop", "стоп"]:
         break
-        print(f"Игра завершена, вы угадали {player.count_used_words()} слов!")
 
     # Если слово короче 3 букв
     elif len(user_word) < MIN_QUANTITY_OF_LETTERS:
@@ -50,8 +49,7 @@ while player.count_used_words() < quantity_of_valid_words:
 
     # Если все проверки пройдены, добавить слово в список использованных слов класса Player и вывести оповещение об этом пользователю
     else:
-        used_words = player.add_new_word(user_word)
-        print(used_words)
+        player.add_new_word(user_word)
         print("верно")
 
 
